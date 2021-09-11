@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "arrays/kth_small_large.cpp": [
+      {
+        "id": "5531f8ce-7564-4224-a465-dfdabbc639c4",
+        "line": 1,
+        "version": 933,
+        "index": 0
+      }
+    ]
+  }
 }
