@@ -2,6 +2,27 @@
 #include <vector>
 using namespace std;
 
+// Second Approach
+void sortAll(vector <int> &arr, int n){
+  int low = 0, mid = 0, high = n-1;
+  while(mid <= high){
+    switch(arr[mid]){
+      case 0: iter_swap( arr.begin()+low, arr.begin()+mid);
+              low++; mid++;
+              break;
+      
+      case 1: mid++;
+              break;
+            
+      case 2: iter_swap( arr.begin()+mid, arr.begin()+high);
+              high--;
+              break;
+    }
+  }
+}
+
+// First Approach
+/*
 void sortAll(vector<int> &arr, int n){
   int i, cnt0=0, cnt1=0, cnt2=0;
   // Obtaining the count of 0s, 1s and 2s
@@ -26,6 +47,7 @@ void sortAll(vector<int> &arr, int n){
     }
   }
 }
+*/
 
 int main(){
   int i, n, x;
