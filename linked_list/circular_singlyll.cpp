@@ -8,7 +8,6 @@ class Node{
 
     Node(int x){
       this->data = x;
-      this->next = NULL;
     }
 };
 
@@ -18,7 +17,7 @@ class LinkedList{
 
     LinkedList() { this->head = NULL; }
 
-    void insertAtBegin(int);
+    void insertAtEnd(int);
     void printList();
     void deleteAtBegin();
     int sizeOfList();
@@ -27,35 +26,29 @@ class LinkedList{
 int LinkedList :: sizeOfList(){
   int count = 0;
   Node* cur = head;
-  while(cur != NULL){
+  while(cur->next != head){
     count++;
     cur = cur->next;
   }
-  return count;
+  return count+1;
 }
 
-void LinkedList :: insertAtBegin(int x){
-  Node *node = new Node(x);
+void LinkedList :: insertAtEnd(int x){
+  Node* node = new Node(x);
 
   if(head == NULL){
     head = node;
+    node->next = head;
     return;
   }
 
+  Node* it = head;
+  while(it->next != head){
+    it = it->next;
+  }
+  it->next = node;
   node->next = head;
-  head = node;
-}
-
-void LinkedList :: deleteAtBegin(){
-  if(head == NULL){
-    cout << "List is empty" << endl;
-    return;
-  }
-
-  Node* temp = head;
-  head = temp->next;
-  delete(temp);
-}
+} 
 
 void LinkedList :: printList(){
   if(head == NULL){
@@ -64,24 +57,41 @@ void LinkedList :: printList(){
   }
 
   Node* temp = head;
-  while(temp != NULL){
+  while(temp->next != head){
     cout << temp->data << " ";
     temp = temp->next;
   }
-  cout << endl;
+  cout << temp->data << endl;
+}
+
+void LinkedList :: deleteAtBegin(){
+  if(head == NULL){
+    cout << "List Empty" << endl;
+    return;
+  }
+
+  Node* cur = head;
+  Node* temp = head;
+
+  while(temp->next != head){
+    temp = temp->next;
+  }
+  head = cur->next;
+  temp->next = head;
+  delete cur;
 }
 
 int main(){
   LinkedList l1;
+  int n;
+  cin >> n;
 
-  l1.insertAtBegin(10);
-  l1.insertAtBegin(20);
-  l1.insertAtBegin(30);
-  l1.insertAtBegin(40);
+  for(int i=1; i<=n; i++){
+    l1.insertAtEnd(i);
+  }
 
   l1.deleteAtBegin();
-
+  cout << "Number of nodes: " << l1.sizeOfList() << endl;
   l1.printList();
-
   return 0;
 }
