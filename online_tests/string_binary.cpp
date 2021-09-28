@@ -1,11 +1,17 @@
 /* Given a binary number as a string check if the string contains same 2 consecutive binary bits repeating till the end. If valid then find the product of given binary and its reversed value in decimal.*/
 
+/* Sample Input : "101010"
+   Output: Valid 
+           "010101"
+           812      */
+
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
 int main(){
     string st1;
+    cout << " Enter the Binary String: ";
     cin >> st1;
     string st2=st1;
     
